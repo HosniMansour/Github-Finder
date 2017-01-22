@@ -1,0 +1,82 @@
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h4 class="header center col white-text" style="margin-top: 90px">Github Profile Finder</h4>
+      <br><br>
+      <form>
+        <div class="row center" style="margin-top: 20px">
+          <input id="username" placeholder="Github username..." type="text" [(ngModel)]="username" name="username" (keyup)="searchUser()">
+        </div>
+      </form>
+      <br>
+    </div>
+  </div>
+  <div class="parallax"><img src="assets/img/bg.jpg" alt="Github"></div>
+</div>
+
+<div class="container">
+  <div *ngIf="user.message==undefined" class="section">
+    <div class="row" style="margin-top: 20px">
+      <div class="col s3">
+        <img src="{{user.avatar_url}}" class="circle responsive-img" />
+      </div>
+      <div class="col s1"></div>
+      <div class="col s8">
+        <h3>{{user.name}}</h3>
+        <div class="chip light-blue">Public repos : {{user.public_repos}}</div>
+        <div class="chip teal">Public gists : {{user.public_gists}}</div>
+        <div class="chip green">Followers : {{user.followers}}</div>
+        <div class="chip amber">Public repos : {{user.following}}</div>
+        <br/>
+        <br/>
+        <table class="bordered">
+          <tbody>
+          <tr>
+            <td><strong>Username : </strong></td>
+            <td>{{user.login}}</td>
+          </tr>
+          <tr>
+            <td><strong>URL : </strong></td>
+            <td><a target="_blank" href="{{user.html_url}}">{{user.html_url}}</a></td>
+          </tr>
+          <tr>
+            <td><strong>Site : </strong></td>
+            <td><a target="_blank" href="{{user.blog}}">{{user.blog}}</a></td>
+          </tr>
+          <tr>
+            <td><strong>email : </strong></td>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr>
+            <td><strong>Member since : </strong></td>
+            <td>{{user.created_at}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <br/>
+      <div id="work-collections" class="seaction" style="margin-top: 50px">
+        <div class="row">
+        <h5>User Repos :</h5>
+          <br/>
+          <ul id="projects-collection" class="collection">
+            <li class="collection-item" *ngFor="let repo of repos">
+              <div class="row">
+                <div class="col s9">
+                  <p class="collections-title"><a target="_blank" href="{{repo.html_url}}">{{repo.name}}</a></p>
+                  <p class="collections-content">{{repo.descrition}}</p>
+                </div>
+                <div class="col s3">
+                  <span class="task-cat blue">{{repo.watchers}} Watchers</span>
+                  <span class="task-cat cyan">{{repo.forks}} Forks</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
